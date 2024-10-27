@@ -2,7 +2,28 @@
 
 The goal of this challenge is to develop an Azure function that can send and read messages from an Azure Service Bus queue.
 
-## Local Setup
+## Structure
+
+```
+.
+├── config
+│   └── config.toml -> ServiceBus emulator config file
+├── host.json -> Functions general config file
+├── local.settings.json -> Functions local settings/vars file
+├── package.json -> Node.js project setup file
+├── README.md -> Project documentation file
+└── src -> Functions source code
+    └── functions
+        ├── readMessages.js
+        └── sendMessage.js
+```
+
+## Functions
+
+* **sendMessages** - HTTP trigger-type function responsible for receiving a JSON payload and sending it to an Azure ServiceBus queue.
+* **readMessages** - ServiceBusQueue trigger-type function responsible for automatically processing messages in a specified Azure ServiceBus queue.
+
+## Setup
 
 This project was developed by using Node.js v20.18.0.
 
