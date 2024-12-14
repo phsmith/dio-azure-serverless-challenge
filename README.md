@@ -22,6 +22,7 @@ The goal of this challenge is to develop an Azure function that can send and rea
 
 * **sendMessages** - HTTP trigger-type function responsible for receiving a JSON payload and sending it to an Azure ServiceBus queue.
 * **readMessages** - ServiceBusQueue trigger-type function responsible for automatically processing messages in a specified Azure ServiceBus queue.
+* **validateCPF** - HTTP trigger-type function responsible for receiving a `cpf` parameter and returning whether it is valid or not.
 
 ## Setup
 
@@ -39,7 +40,7 @@ To develop locally, the following steps are required:
     ```
 3) Docker is required to run the amazing [Lazvard Message AMQP server simulator](https://github.com/PejmanNik/lazvard-message), which is unofficially compatible with the Azure Service Bus:
     ```sh
-    docker run --name servicebus-emulator -d -p 5671:5671 -v ./config:/App/config pejmann/lazvard-message
+    docker run --rm --name servicebus-emulator -d -p 5671:5671 -v ./config:/App/config pejmann/lazvard-message
     ```
     In another terminal, run the following command to track the emulator logs:
     ```
@@ -53,4 +54,5 @@ To develop locally, the following steps are required:
 
     ```sh
     curl -X POST 'http://localhost:7071/api/sendMessage' -H 'Content-Type: application/json' -d '{"user":"Phillipe Smith","message": "Hey! It works"}'
+    curl -X GET 'http://localhost:7071/api/validateCPF?cpf=00000000000'
     ```
