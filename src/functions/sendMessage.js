@@ -11,10 +11,18 @@ app.http("sendMessage", {
   extraOutputs: [messagesOutput],
   handler: async (request, context) => {
     context.log(`Http function processed request for url "${request.url}"`);
+    let payload;
 
-    const payload = (await request.json()) || {};
+    try {
+      payload = await request.json();
+    } catch {
+      return {
+        jsonBody: { error: "A JSON payload is required." },
+        status: 400,
+      };
+    }
 
-    if (payload.message && payload.user) {
+    if (Object.keys(payload).length > 0) {
       context.extraOutputs.set(messagesOutput, payload);
       return {
         jsonBody: { message: "Message successfully published!" },
@@ -22,7 +30,7 @@ app.http("sendMessage", {
       };
     } else {
       return {
-        jsonBody: { error: "Missing 'message' and/or 'user' attributes in the request." },
+        jsonBody: { error: "Payload is empty." },
         status: 400,
       };
     }
