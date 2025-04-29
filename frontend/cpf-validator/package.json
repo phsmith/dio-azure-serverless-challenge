@@ -1,0 +1,15 @@
+{
+  "name": "cpf-validator",
+  "version": "1.0.0",
+  "description": "A web application to validate Brazilian CPF numbers using an API.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "live-server public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

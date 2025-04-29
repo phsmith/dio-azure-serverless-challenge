@@ -15,10 +15,10 @@ app.http("validateCPF", {
       body = { error: "cpf parameter not specified" };
       status = 400;
     } else if (cpf.isValid(cpfNumber)) {
-      body = { message: "CPF is valid!" };
+      body = { message: "CPF is valid" };
       status = 200;
     } else {
-      body = { error: "Invalid CPF." };
+      body = { error: "CPF is not valid" };
       status = 400;
     }
 

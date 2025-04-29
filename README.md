@@ -8,14 +8,24 @@ The goal of this challenge is to develop an Azure function that can send and rea
 .
 ├── config
 │   └── config.toml -> ServiceBus emulator config file
+├── frontend
+│   └── cpf-validator
+│       ├── package.json
+│       ├── public
+│       │   ├── index.html
+│       │   └── styles.css
+│       ├── README.md
+│       └── src
+│           └── app.js
 ├── host.json -> Functions general config file
 ├── local.settings.json -> Functions local settings/vars file
 ├── package.json -> Node.js project setup file
 ├── README.md -> Project documentation file
-└── src -> Functions source code
+└── src -> Functions and frontend source code
     └── functions
         ├── readMessages.js
-        └── sendMessage.js
+        ├── sendMessage.js
+        └── validateCPF.js
 ```
 
 ## Functions
@@ -24,7 +34,7 @@ The goal of this challenge is to develop an Azure function that can send and rea
 * **readMessages** - ServiceBusQueue trigger-type function responsible for automatically processing messages in a specified Azure ServiceBus queue.
 * **validateCPF** - HTTP trigger-type function responsible for receiving a `cpf` parameter and returning whether it is valid or not.
 
-## Setup
+### Setup
 
 This project was developed by using Node.js v20.18.0.
 
@@ -56,3 +66,6 @@ To develop locally, the following steps are required:
     curl -X POST 'http://localhost:7071/api/sendMessage' -H 'Content-Type: application/json' -d '{"user":"Phillipe Smith","message": "Hey! It works"}'
     curl -X GET 'http://localhost:7071/api/validateCPF?cpf=00000000000'
     ```
+## Frontend
+
+- [cpf-validator](./frontend/cpf-validator/README.md) -> Simple web interface for the `validateCPF` Azure Function.
